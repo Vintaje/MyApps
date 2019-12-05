@@ -1,0 +1,186 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.emiliorgvintaje.myapps"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+8-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:6:5-67
+11-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:7:5-79
+12-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:8:5-81
+13-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:9:5-80
+14-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:9:22-77
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:10:5-65
+15-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:10:22-62
+16    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+16-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:11:5-71
+16-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:11:22-68
+17
+18    <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+18-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:13:5-75
+18-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:13:17-72
+19
+20    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+20-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:15:5-75
+20-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:15:22-72
+21    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+21-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:11:5-71
+21-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:11:22-68
+22
+23    <uses-feature android:name="android.hardware.camera" />
+23-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:18:5-60
+23-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:18:19-57
+24    <uses-feature android:name="android.hardware.camera.autofocus" />
+24-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:19:5-70
+24-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:19:19-67
+25
+26    <!-- This permission is required to start foreground services in Android P. -->
+27    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+27-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:7:5-77
+27-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:7:22-74
+28
+29    <application
+29-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:21:5-58:19
+30        android:allowBackup="true"
+30-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:22:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.1.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\c527b78844be871c44103f6f45a963fb\core-1.1.0\AndroidManifest.xml:24:18-86
+32        android:debuggable="true"
+33        android:hardwareAccelerated="true"
+33-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:30:9-43
+34        android:icon="@mipmap/ic_myapp"
+34-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:23:9-40
+35        android:label="@string/app_name"
+35-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:24:9-41
+36        android:requestLegacyExternalStorage="true"
+36-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:25:9-52
+37        android:roundIcon="@mipmap/ic_myapp_round"
+37-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:26:9-51
+38        android:screenOrientation="portrait"
+38-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:27:9-45
+39        android:supportsRtl="true"
+39-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:28:9-35
+40        android:theme="@style/AppTheme" >
+40-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:29:9-40
+41        <service android:name="com.emiliorgvintaje.myapps.ui.musicplayer.Services.MediaPlayerService" />
+41-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:34:9-105
+41-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:34:18-102
+42
+43        <activity
+43-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:36:9-44:15
+44            android:name="com.emiliorgvintaje.myapps.MainActivity"
+44-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:37:13-67
+45            android:configChanges="orientation|screenSize"
+45-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:38:13-59
+46            android:label="@string/app_name"
+46-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:39:13-45
+47            android:launchMode="singleTask"
+47-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:40:13-44
+48            android:screenOrientation="portrait"
+48-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:42:13-49
+49            android:theme="@style/AppTheme.NoActionBar"
+49-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:41:13-56
+50            android:windowSoftInputMode="adjustPan" />
+50-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:43:13-52
+51        <activity
+51-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:45:9-53:20
+52            android:name="com.emiliorgvintaje.myapps.SplashScreen"
+52-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:46:13-67
+53            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+53-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:47:13-71
+54            <intent-filter>
+54-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:48:13-52:29
+55                <action android:name="android.intent.action.MAIN" />
+55-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:49:17-69
+55-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:49:25-66
+56
+57                <category android:name="android.intent.category.LAUNCHER" />
+57-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:51:17-77
+57-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:51:27-74
+58            </intent-filter>
+59        </activity>
+60
+61        <meta-data
+61-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:55:9-57:57
+62            android:name="preloaded_fonts"
+62-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:56:13-43
+63            android:resource="@array/preloaded_fonts" />
+63-->C:\Users\dam201\DOCS Shared\PDMYM\Proyectos\MyApps30-11\MyApps\app\src\main\AndroidManifest.xml:57:13-54
+64
+65        <activity
+65-->[com.karumi:dexter:6.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bb5614001632da5cdb4b2efa5ee9a362\dexter-6.0.0\AndroidManifest.xml:27:9-29:72
+66            android:name="com.karumi.dexter.DexterActivity"
+66-->[com.karumi:dexter:6.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bb5614001632da5cdb4b2efa5ee9a362\dexter-6.0.0\AndroidManifest.xml:28:13-60
+67            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+67-->[com.karumi:dexter:6.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bb5614001632da5cdb4b2efa5ee9a362\dexter-6.0.0\AndroidManifest.xml:29:13-69
+68
+69        <receiver
+69-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:10:9-12:40
+70            android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver"
+70-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:11:13-91
+71            android:exported="false" />
+71-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:12:13-37
+72
+73        <service
+73-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:14:9-16:40
+74            android:name="com.google.android.gms.cast.framework.media.MediaNotificationService"
+74-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:15:13-96
+75            android:exported="false" />
+75-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:16:13-37
+76        <service
+76-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:17:9-19:40
+77            android:name="com.google.android.gms.cast.framework.ReconnectionService"
+77-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:18:13-85
+78            android:exported="false" />
+78-->[com.google.android.gms:play-services-cast-framework:16.1.2] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\d7f460040978ffe07a5939ed5e3a06cf\jetified-play-services-cast-framework-16.1.2\AndroidManifest.xml:19:13-37
+79
+80        <activity
+80-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\ec446b4806e080e8e02c63480745edaf\jetified-play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
+81            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+81-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\ec446b4806e080e8e02c63480745edaf\jetified-play-services-base-16.0.1\AndroidManifest.xml:24:13-79
+82            android:exported="false"
+82-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\ec446b4806e080e8e02c63480745edaf\jetified-play-services-base-16.0.1\AndroidManifest.xml:25:13-37
+83            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+83-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\ec446b4806e080e8e02c63480745edaf\jetified-play-services-base-16.0.1\AndroidManifest.xml:26:13-72
+84
+85        <meta-data
+85-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\6db4abe65f1608a8c69e86adf21d4b81\jetified-play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
+86            android:name="com.google.android.gms.version"
+86-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\6db4abe65f1608a8c69e86adf21d4b81\jetified-play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
+87            android:value="@integer/google_play_services_version" />
+87-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\6db4abe65f1608a8c69e86adf21d4b81\jetified-play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
+88
+89        <provider
+89-->[com.squareup.picasso:picasso:2.71828] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\11285e9c260426b2f9bb07e5e86489da\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+90            android:name="com.squareup.picasso.PicassoProvider"
+90-->[com.squareup.picasso:picasso:2.71828] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\11285e9c260426b2f9bb07e5e86489da\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+91            android:authorities="com.emiliorgvintaje.myapps.com.squareup.picasso"
+91-->[com.squareup.picasso:picasso:2.71828] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\11285e9c260426b2f9bb07e5e86489da\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+92            android:exported="false" />
+92-->[com.squareup.picasso:picasso:2.71828] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\11285e9c260426b2f9bb07e5e86489da\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+93        <provider
+93-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bba9e662e9f4bf0da774229f97b853fc\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+94            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+94-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bba9e662e9f4bf0da774229f97b853fc\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+95            android:authorities="com.emiliorgvintaje.myapps.lifecycle-process"
+95-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bba9e662e9f4bf0da774229f97b853fc\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+96            android:exported="false"
+96-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bba9e662e9f4bf0da774229f97b853fc\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+97            android:multiprocess="true" />
+97-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\dam201\.gradle\caches\transforms-2\files-2.1\bba9e662e9f4bf0da774229f97b853fc\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+98    </application>
+99
+100</manifest>

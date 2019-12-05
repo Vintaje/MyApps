@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+
+        app:srcCompat="@drawable/senddesign" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="0dp"
+        android:textColorHint="@color/eurogamer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietContactoEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_contact"
+            android:maxLength="25" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvEnviarNombre"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:textColorHint="@color/eurogamer"
+        android:visibility="visible"
+        app:counterEnabled="true"
+        app:counterMaxLength="25"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietContactoNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_contact"
+            android:maxLength="25" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Switch
+            android:id="@+id/swMainContactar"
+            android:layout_width="154dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:hint="@string/contactar"
+            android:text="@string/contactar"
+            android:textColor="@color/eurogamer"
+            android:textColorHint="@color/eurogamer"
+            android:textColorLink="@color/eurogamer"
+            android:textSize="12sp"
+ />
+
+        <Button
+            android:id="@+id/btEnviar"
+            android:layout_width="129dp"
+            android:layout_height="36dp"
+
+            android:background="@drawable/click_effect_enviar"
+            android:foregroundGravity="right"
+            android:layout_marginStart="80dp"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="@string/enviar"
+            android:textColor="@color/whitebox"
+ />
+    </LinearLayout>
+
+</LinearLayout>

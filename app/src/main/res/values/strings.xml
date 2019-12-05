@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">MyAPPs</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">MyAPPs</string>
+    <string name="nav_header_title2">del Grupo MyClass</string>
+    <string name="nav_header_subtitle">vintajeskull98@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="aboutus">Desarrollador</string>
+    <string name="menu_share">MyRss - EuroGamer</string>
+    <string name="menu_send">Contacto</string>
+    <string name="menu_music">Musica</string>
+    <string name="menu_rss">Noticias</string>
+    <string name="menu_juegos">Mis Juegos</string>
+    <string name="title_activity_detalles_noticia">DetallesNoticia</string>
+
+    <string name="Bienvenido">MyAPPs</string>
+    <string name="MyAppBienvenido">¡Una APP para todo! \n¡Gracias por confiar en nosotros! \n\n Proximamente mas funcionalidades
+    </string>
+    <string name="dev">Desarrollador</string>
+    <string name="nombre">Emilio Rubiales</string>
+    <string name="contactar">Contactar</string>
+    <string name="email_contact">Enviar a: email@email.com</string>
+    <string name="nombre_contact">De parte de: Nombre</string>
+    <string name="mensajedev">Enviar mail al desarrollador</string>
+    <string name="asunto">Asunto</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="refrescar">Refrescar</string>
+    <string name="fecha_de_lanzamiento">Fecha de Lanzamiento</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="titulo">Titulo</string>
+    <string name="precio">Precio</string>
+    <string name="mis_juegos_title">Mis Juegos</string>
+    <string name="backarrow">backArrow</string>
+    <string name="enviar">Enviar</string>
+    <string name="sinopsis">Sinopsis</string>
+    <string name="comunicacion">Comunicacion</string>
+    <string name="reproducir_aleatorio">Reproducir Aleatorio</string>
+    <string name="rep_shuffler">Reproduccion Aleatoria</string>
+    <string name="rep_normal">Reproduccion Normal</string>
+    <string name="mas_detalles">Mas Detalles</string>
+    <string name="compartir">Compartir</string>
+    <string name="borrar">Borrar</string>
+    <string name="reproduciendo">Reproduciendo</string>
+    <string name="reproduccion_normal">Reproduccion Normal</string>
+    <string name="videos">Videos</string>
+
+    <string name="title_activity_playing">PlayingActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="sensores">Sensores</string>
+    <string name="no_disponible">No disponible</string>
+    <string name="temp_no_disponible">Temperatura\nno disponible</string>
+    <string name="flujo_magnetico">Flujo Magnetico</string>
+
+</resources>

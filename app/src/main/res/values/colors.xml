@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0098EA</color>
+    <color name="colorPrimaryDark">#0098EA</color>
+    <color name="colorAccent">#44BBFF</color>
+    <color name="eurogamer">#0098EA</color>
+    <color name="eurogamer_transparent">#A10098EA</color>
+    <color name="recycler_background">#950098EA</color>
+    <color name="juegos_fragment">#27C7D6</color>
+    <color name="whitebox">#FFFFFF</color>
+    <color name="btRefresh">#44BBFF</color>
+    <color name="colormail">#1B6CAC</color>
+    <color name="leftswiper">#FF5252</color>
+    <color name="deeporange">#FF9B31</color>
+    <color name="blackfade">#74000000</color>
+    <color name="bg_playing">#E9000000</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

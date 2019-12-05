@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relActualSong"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/playingbg"
+    android:backgroundTint="#DF000000"
+    android:foregroundTint="#BE000000">
+
+    <LinearLayout
+        android:id="@+id/linearPlaying"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="0dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#9FFFFFFF"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.musicplayer.Playing.PlayingFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTituloSong"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/days_one"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/whitebox"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvArtAlbumSong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/days_one"
+                android:gravity="center"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:text="TextView"
+                android:textColor="@color/whitebox" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="270dp"
+            android:layout_height="270dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="60dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpActualSong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical">
+
+
+            </androidx.viewpager.widget.ViewPager>
+
+
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCurrentSong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center|end"
+                android:text="00:00"
+                android:textColor="@android:color/white" />
+
+            <SeekBar
+                android:id="@+id/seekBarSong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progressBackgroundTint="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvTotalSong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center|start"
+                android:text="00:00"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibPrevSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/click_juegos"
+                android:src="@drawable/bt_prev_large" />
+
+            <ImageButton
+                android:id="@+id/ibPlayStopSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/click_juegos"
+                android:src="@drawable/bt_play_large" />
+
+            <ImageButton
+                android:id="@+id/ibNextSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/click_juegos"
+                android:src="@drawable/bt_next_large" />
+
+        </LinearLayout>
+        <com.gauravk.audiovisualizer.visualizer.BarVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:avColor="@color/av_dark_blue"
+            custom:avDensity="0.8"
+            custom:avSpeed="medium"
+            custom:avType="fill"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

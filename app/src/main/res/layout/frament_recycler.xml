@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <Button
+        android:id="@+id/btRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_alignTop="@+id/swipeRefreshLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="358dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="332dp"
+        android:background="@drawable/round_button_corners"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="@string/refrescar"
+        android:textColor="@color/whitebox"
+        android:visibility="invisible" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNoticias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/recycler_background"
+            android:layoutAnimation="@anim/layout_animation"
+            android:requiresFadingEdge="horizontal"
+            android:fadingEdgeLength="20dp"/>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_24px"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_rss_feed"
+            android:title="@string/menu_rss" />
+        <item
+            android:id="@+id/nav_juegos"
+            android:icon="@drawable/ic_gamepad_black_24dp"
+            android:title="@string/menu_juegos" />
+        <item
+            android:id="@+id/nav_music"
+            android:icon="@drawable/ic_music_note_black_24dp"
+            android:title="@string/menu_music" />
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_videocam_black_24dp"
+            android:title="@string/videos" />
+        <item
+            android:id="@+id/nav_sensor"
+            android:icon="@drawable/ic_developer_mode_black_24dp"
+            android:title="@string/sensores" />
+    </group>
+    <item android:title="@string/comunicacion">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_send"
+                    android:icon="@drawable/ic_phone_24px"
+                    android:title="@string/menu_send" />
+                <item
+                    android:id="@+id/nav_gallery"
+                    android:icon="@drawable/ic_supervised_user_circle_24px"
+                    android:title="@string/aboutus" />
+            </group>
+        </menu>
+    </item>
+</menu>

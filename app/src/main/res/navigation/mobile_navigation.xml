@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.emiliorgvintaje.myapps.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.emiliorgvintaje.myapps.ui.about_us.AboutUsFragment"
+        android:label="@string/aboutus"
+        tools:layout="@layout/fragment_aboutus" />
+    <fragment
+        android:id="@+id/nav_juegos"
+        android:name="com.emiliorgvintaje.myapps.ui.juegos.JuegosFragment"
+        android:label="juegos_fragment"
+        tools:layout="@layout/juegos_fragment" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.emiliorgvintaje.myapps.ui.rssfolder.rssFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/frament_recycler" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.emiliorgvintaje.myapps.ui.send.SendFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/nav_music"
+        android:name="com.emiliorgvintaje.myapps.ui.musicplayer.MusicFragment"
+        android:label="@string/menu_music"
+        tools:layout="@layout/music_fragment" />
+    <fragment
+        android:id="@+id/nav_playing"
+        android:name="com.emiliorgvintaje.myapps.ui.musicplayer.Playing.PlayingFragment"
+        android:label="@string/reproduciendo"
+        tools:layout="@layout/playing_fragment" />
+
+    <fragment
+        android:id="@+id/nav_videos"
+        android:name="com.emiliorgvintaje.myapps.ui.videoplayer.VideoPlayerFragment"
+        android:label="@string/videos"
+        tools:layout="@layout/video_player_fragment" />
+
+    <fragment
+        android:id="@+id/nav_sensor"
+        android:name="com.emiliorgvintaje.myapps.ui.sensores.SensoresFragment"
+        android:label="@string/sensores"
+        tools:layout="@layout/sensores_fragment" />
+</navigation>
