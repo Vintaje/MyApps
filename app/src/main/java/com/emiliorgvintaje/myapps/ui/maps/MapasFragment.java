@@ -101,6 +101,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         mPosicion = LocationServices.getFusedLocationProviderClient(getContext());
         handler = new Handler();
         autolocalizador = root.findViewById(R.id.btDesactivarLocalizador);
+        tiempo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_access_time_black_24dp, 0, 0, 0);;
 
         autolocalizador.setOnClickListener(new View.OnClickListener() {
             @Override
