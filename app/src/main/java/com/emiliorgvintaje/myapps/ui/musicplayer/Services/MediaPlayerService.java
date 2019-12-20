@@ -784,8 +784,6 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
         //Registramos recibidor de PlayNewAudio
         IntentFilter filter = new IntentFilter(MusicFragment.Broadcast_PLAY_NEW_AUDIO);
         registerReceiver(playNewAudio, filter);
-
-
     }
 
 
