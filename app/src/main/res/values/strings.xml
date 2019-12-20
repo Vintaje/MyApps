@@ -55,5 +55,11 @@
     <string name="no_disponible">No disponible</string>
     <string name="temp_no_disponible">Temperatura\nno disponible</string>
     <string name="flujo_magnetico">Flujo Magnetico</string>
+    <string name="Mapas">Mis Mapas</string>
+    <string name="misc">Miscelaneo</string>
+    <string name="multimedia">Multimedia</string>
+    <string name="actv_autoloc">ACTIVAR\nAUTOLOCALIZADOR</string>
+    <string name="desct_autoloc">DESACTIVAR\nAUTOLOCALIZADOR</string>
+
 
 </resources>

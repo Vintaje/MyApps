@@ -16,19 +16,36 @@
             android:id="@+id/nav_juegos"
             android:icon="@drawable/ic_gamepad_black_24dp"
             android:title="@string/menu_juegos" />
-        <item
-            android:id="@+id/nav_music"
-            android:icon="@drawable/ic_music_note_black_24dp"
-            android:title="@string/menu_music" />
-        <item
-            android:id="@+id/nav_videos"
-            android:icon="@drawable/ic_videocam_black_24dp"
-            android:title="@string/videos" />
-        <item
-            android:id="@+id/nav_sensor"
-            android:icon="@drawable/ic_developer_mode_black_24dp"
-            android:title="@string/sensores" />
+        <item android:title="@string/multimedia">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_music"
+                        android:icon="@drawable/ic_music_note_black_24dp"
+                        android:title="@string/menu_music" />
+                    <item
+                        android:id="@+id/nav_videos"
+                        android:icon="@drawable/ic_videocam_black_24dp"
+                        android:title="@string/videos" />
+                </group>
+            </menu>
+        </item>
     </group>
+    <item android:title="@string/misc">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_sensor"
+                    android:icon="@drawable/ic_developer_mode_black_24dp"
+                    android:title="@string/sensores" />
+                <item
+                    android:id="@+id/nav_map"
+                    android:icon="@drawable/ic_map_black_24dp"
+                    android:title="@string/Mapas" />
+            </group>
+        </menu>
+    </item>
+
     <item android:title="@string/comunicacion">
         <menu>
             <group android:checkableBehavior="single">
