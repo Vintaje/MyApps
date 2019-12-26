@@ -143,7 +143,6 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     grabar = false;
                     fabRuta.setImageResource(android.R.drawable.ic_media_play);
                     autolocalizador.setVisibility(View.VISIBLE);
-                    actualizar = false;
                     distancia.setVisibility(View.INVISIBLE);
                     mMap.clear();
                 }else{
