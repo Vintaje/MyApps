@@ -14,7 +14,7 @@
         android:id="@+id/layoutBotones"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:background="@android:color/transparent"
+        android:background="@color/blackfade"
         android:orientation="horizontal"
         android:padding="5dp">
 

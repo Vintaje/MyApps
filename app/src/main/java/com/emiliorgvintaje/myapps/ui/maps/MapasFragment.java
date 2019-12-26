@@ -411,9 +411,9 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
 
 
         };
-        // Actualizamos cada 10 segundos
+        // Actualizamos cada 1 segundo
         // podemos pararlo con timer.cancel();
-        timer.schedule(doAsyncTask, 0, 3000);
+        timer.schedule(doAsyncTask, 0, 1000);
     }
 
 
