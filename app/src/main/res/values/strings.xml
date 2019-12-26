@@ -60,6 +60,7 @@
     <string name="multimedia">Multimedia</string>
     <string name="actv_autoloc">ACTIVAR\nAUTOLOCALIZADOR</string>
     <string name="desct_autoloc">DESACTIVAR\nAUTOLOCALIZADOR</string>
+    <string name="kmmarker">%.3f km</string>
 
 
 </resources>
