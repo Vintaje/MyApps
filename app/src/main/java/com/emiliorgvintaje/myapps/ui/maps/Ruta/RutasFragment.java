@@ -47,8 +47,9 @@ public class RutasFragment extends Fragment {
 
         root =  inflater.inflate(R.layout.rutas_fragment, container, false);
         int resId = R.anim.layout_animation;
-        recyclerView = root.findViewById(R.id.rvRutas);
+        recyclerView = (RecyclerView) root.findViewById(R.id.rvRutas);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(root.getContext(), resId);
         recyclerView.setLayoutAnimation(animation);
         return root;

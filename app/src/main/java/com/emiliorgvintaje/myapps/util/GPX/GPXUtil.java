@@ -164,8 +164,9 @@ public class GPXUtil {
         } catch (SAXException e) {
             e.printStackTrace();
         }
-
-        return  document.getElementsByTagName("gpx").item(0).getAttributes().getNamedItem("ruta").getNodeValue();
+        String res =  document.getElementsByTagName("gpx").item(0).getAttributes().getNamedItem("ruta").getNodeValue();
+        System.out.printf(res);
+        return  res;
 
     }
 
