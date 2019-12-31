@@ -5,6 +5,8 @@ import android.location.Location;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,9 +32,19 @@ import javax.xml.transform.stream.StreamResult;
 public class GPXUtil {
     public final static String path = "/myapps/gpx";
 
-    public static void build(ArrayList<Location> locations, Context context, String nombre) {
+    public static void build(ArrayList<LatLng> locations, Context context, String nombre) {
+        File dirGPX = new File(Environment.getExternalStorageDirectory() + path);
+        // Si no existe el directorio, lo creamos solo si es publico
+        if (!dirGPX.exists()) {
+            dirGPX.mkdirs();
+        }
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-
+        File file = new File(Environment.getExternalStorageDirectory() + path, System.currentTimeMillis()+".xml");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         DocumentBuilder documentBuilder = null;
         try {
             documentBuilder = documentFactory.newDocumentBuilder();
@@ -51,7 +63,7 @@ public class GPXUtil {
         root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
         root.setAttribute("version", "1.1");
         root.setAttribute("xsi:schemaLocation", "http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd");
-
+        document.appendChild(root);
         Element nbr = document.createElement("number");
         nbr.setAttribute("numpoints", Integer.toString(locations.size()));
         nbr.setAttribute("numwpts", "0");
@@ -62,10 +74,10 @@ public class GPXUtil {
         Element trackseg = document.createElement("trkseg");
         track.appendChild(trackseg);
 
-        for (Location loc : locations) {
+        for (LatLng loc : locations) {
             Element trkpt = document.createElement("trkpt");
-            trkpt.setAttribute("lat", Double.toString(loc.getLatitude()));
-            trkpt.setAttribute("lon", Double.toString(loc.getLongitude()));
+            trkpt.setAttribute("lat", Double.toString(loc.latitude));
+            trkpt.setAttribute("lon", Double.toString(loc.longitude));
             trkpt.setAttribute("grade", Integer.toString(1));
             trackseg.appendChild(trkpt);
         }
@@ -78,7 +90,7 @@ public class GPXUtil {
             e.printStackTrace();
         }
         DOMSource domSource = new DOMSource(document);
-        StreamResult streamResult = new StreamResult(new File(Environment.getExternalStorageDirectory() + path, System.currentTimeMillis() + nombre + "gpx"));
+        StreamResult streamResult = new StreamResult(file.getPath());
 
 
         try {

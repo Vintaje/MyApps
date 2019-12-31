@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,9 +15,7 @@
         android:id="@+id/layoutBotones"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:background="@color/blackfade"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btDesactivarLocalizador"
@@ -33,30 +32,70 @@
             android:textSize="8sp" />
 
         <LinearLayout
+            android:id="@+id/layoutRuta"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent"
+            android:background="@color/whitebox"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvHoraActual"
-                android:layout_width="100dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/whitebox"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvDistanciaActual"
-                android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Hora Actual:"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvHoraActual"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/whitebox"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Distancia Recorrida:
+"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvDistanciaActual"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -72,10 +111,14 @@
         android:focusable="true"
         android:src="@android:drawable/ic_media_play" />
 
-    <FrameLayout
-        android:id="@+id/fragment"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btRutas"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/click_effect_map"
+        android:text="Rutas"
+        android:textColor="@color/whitebox" />
 
 </FrameLayout>

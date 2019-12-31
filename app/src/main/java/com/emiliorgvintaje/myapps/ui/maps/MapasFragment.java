@@ -1,5 +1,7 @@
 package com.emiliorgvintaje.myapps.ui.maps;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -10,15 +12,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emiliorgvintaje.myapps.R;
+import com.emiliorgvintaje.myapps.ui.maps.Ruta.RutasFragment;
+import com.emiliorgvintaje.myapps.util.GPX.GPXUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -92,6 +99,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     private TextView distancia;
     private Button autolocalizador;
     private FloatingActionButton fabRuta;
+    private LinearLayout layout;
+    private Button rutas;
 
 
     private Handler handler;
@@ -108,11 +117,16 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         grabar = false;
         tiempo = root.findViewById(R.id.tvHoraActual);
         fabRuta = root.findViewById(R.id.fabRuta);
+
+        rutas = root.findViewById(R.id.btRutas);
+
         distancia = root.findViewById(R.id.tvDistanciaActual);
         mPosicion = LocationServices.getFusedLocationProviderClient(root.getContext());
         handler = new Handler();
         autolocalizador = root.findViewById(R.id.btDesactivarLocalizador);
         tiempo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_access_time_black_24dp, 0, 0, 0);
+
+        layout = root.findViewById(R.id.layoutRuta);
 
         autolocalizador.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,10 +144,12 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment supportMapFragment = SupportMapFragment.newInstance();
-        distancia.setVisibility(View.INVISIBLE);
+
         getFragmentManager().beginTransaction().replace(R.id.mapContainer, supportMapFragment).commit();
         supportMapFragment.getMapAsync(this);
         actualizar = true;
+        layout.setVisibility(View.INVISIBLE);
+
 
         fabRuta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +159,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     grabar = false;
                     fabRuta.setImageResource(android.R.drawable.ic_media_play);
                     autolocalizador.setVisibility(View.VISIBLE);
-                    distancia.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
+                    alertDialog();
                     mMap.clear();
                 }else{
                     grabar = true;
@@ -151,7 +168,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     autolocalizador.setVisibility(View.INVISIBLE);
                     actualizar = true;
                     dist = 0;
-                    distancia.setVisibility(View.VISIBLE);
+                    layout.setVisibility(View.VISIBLE);
                     ruta = new ArrayList<>();
 
                 }
@@ -160,8 +177,54 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         });
 
 
+        rutas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RutasFragment rutasFragment = new RutasFragment();
+                getFragmentManager().beginTransaction().add(R.id.nav_host_fragment,rutasFragment).addToBackStack(null).commit();
+            }
+        });
+
+
         return root;
     }
+
+    private void alertDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setMessage("Introduce el nombre del fichero a guardar");
+        dialog.setTitle("Guardar...");
+        // Seteamos el input
+        final EditText input = new EditText(getContext());
+        // Especificamos el tipo de input
+        input.setPadding(40,0,40,0);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialog.setView(input);
+
+        dialog.setPositiveButton("Confirmar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        String path = input.getText().toString().trim();
+
+                        if(path.isEmpty()){
+
+                            Toast.makeText(getContext(),"Nombre Incorrecto", Toast.LENGTH_SHORT).show();
+                        }else {
+                            GPXUtil.build(ruta,root.getContext(),path);
+                        }
+                    }
+                });
+
+        dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getContext(),"Reproduccion Cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+    }
+
 
 
 
