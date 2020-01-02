@@ -3,7 +3,7 @@ package com.emiliorgvintaje.myapps.ui.maps.Ruta;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
-import android.location.Location;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -18,11 +18,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.FrameLayout;
 
+import com.emiliorgvintaje.myapps.MainActivity;
 import com.emiliorgvintaje.myapps.R;
 import com.emiliorgvintaje.myapps.ui.maps.MapasFragment;
 import com.emiliorgvintaje.myapps.ui.maps.Ruta.Lista.RutaAdapter;
 import com.emiliorgvintaje.myapps.util.GPX.GPXUtil;
+import com.emiliorgvintaje.myapps.util.Touch.CustomTouchListener;
+import com.emiliorgvintaje.myapps.util.Touch.onItemClickListener;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,16 +35,19 @@ import java.util.Arrays;
 
 public class RutasFragment extends Fragment {
 
-    public static RutasFragment newInstance() {
-        return new RutasFragment();
-    }
 
     private View root;
     private RecyclerView recyclerView;
     private MapasFragment mapasFragment;
     private RutaAdapter adapter;
+    private FrameLayout frameLayout;
     private ArrayList<File> rutas;
 
+
+
+    public RutasFragment(MapasFragment mapasFragment){
+        this.mapasFragment = mapasFragment;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -49,11 +57,33 @@ public class RutasFragment extends Fragment {
         int resId = R.anim.layout_animation;
         recyclerView = (RecyclerView) root.findViewById(R.id.rvRutas);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-
+        frameLayout = root.findViewById(R.id.frameRutas);
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(root.getContext(), resId);
         recyclerView.setLayoutAnimation(animation);
+        recyclerView.addOnItemTouchListener(new CustomTouchListener(root.getContext(), new onItemClickListener() {
+            @Override
+            public void onClick(View view, int index) {
+                final File ruta = rutas.get(index);
+                ArrayList<LatLng> puntos = new ArrayList<>();
+                puntos = GPXUtil.read(root.getContext(), ruta);
+
+                mapasFragment.cargarRuta(puntos);
+                ((MainActivity)getActivity()).onBackPressed();
+            }
+        }));
+
+
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).onBackPressed();
+            }
+        });
+
         return root;
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -78,7 +108,12 @@ public class RutasFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            rutas = new ArrayList<>(Arrays.asList(GPXUtil.readlist()));
+            try {
+                rutas = new ArrayList<>(Arrays.asList(GPXUtil.readlist()));
+            }catch(NullPointerException ex){
+                rutas = new ArrayList<>();
+
+            }
             return null;
         }
 

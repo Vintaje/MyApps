@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.emiliorgvintaje.myapps.R;
+import com.emiliorgvintaje.myapps.ui.maps.MapasFragment;
 import com.emiliorgvintaje.myapps.ui.musicplayer.MusicAdapter;
 import com.emiliorgvintaje.myapps.util.GPX.GPXUtil;
 
@@ -21,8 +22,10 @@ public class RutaAdapter extends RecyclerView.Adapter<RutaAdapter.ViewHolder>{
     private ArrayList<File> list;
 
 
-    public RutaAdapter(ArrayList<File> list){
+
+    public RutaAdapter(ArrayList<File> list ){
         this.list = list;
+
     }
 
     @NonNull
@@ -41,12 +44,7 @@ public class RutaAdapter extends RecyclerView.Adapter<RutaAdapter.ViewHolder>{
 
         holder.titulo.setText(GPXUtil.readNombre(loc));
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     @Override

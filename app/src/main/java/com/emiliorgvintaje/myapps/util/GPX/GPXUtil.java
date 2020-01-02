@@ -110,8 +110,8 @@ public class GPXUtil {
      * @param doc     fichero
      * @return puntos de localizacion
      */
-    public static ArrayList<Location> read(Context context, File doc) {
-        ArrayList<Location> tkpoints = new ArrayList<>();
+    public static ArrayList<LatLng> read(Context context, File doc) {
+        ArrayList<LatLng> tkpoints = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         try {
@@ -134,11 +134,11 @@ public class GPXUtil {
 
         for (int i = 0; i < localizaciones.getLength(); i++) {
             Node nodo = localizaciones.item(i);
-            Location loc = new Location("");
             double lat = Double.parseDouble(nodo.getAttributes().getNamedItem("lat").getNodeValue());
             double lon = Double.parseDouble(nodo.getAttributes().getNamedItem("lon").getNodeValue());
-            loc.setLatitude(lat);
-            loc.setLongitude(lon);
+            LatLng loc = new LatLng(lat,lon);
+
+
             tkpoints.add(loc);
         }
         Toast.makeText(context, "Ruta cargada", Toast.LENGTH_SHORT).show();

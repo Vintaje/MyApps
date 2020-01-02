@@ -1,5 +1,6 @@
 package com.emiliorgvintaje.myapps.ui.maps;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +88,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     //Boolean para guardar ruta
     private boolean grabar;
 
+
+
     private View root;
 
 
@@ -93,21 +97,21 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     private Polyline line;
     private ArrayList<LatLng> ruta;
     private double dist;
+    private Marker inicio, fin;
 
     //Elementos de la UI
     private TextView tiempo;
     private TextView distancia;
     private Button autolocalizador;
     private FloatingActionButton fabRuta;
-    private LinearLayout layout;
+    private LinearLayout layoutRuta;
     private Button rutas;
+    private Button cancelar;
 
 
     private Handler handler;
 
-    public static MapasFragment newInstance() {
-        return new MapasFragment();
-    }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -117,7 +121,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         grabar = false;
         tiempo = root.findViewById(R.id.tvHoraActual);
         fabRuta = root.findViewById(R.id.fabRuta);
-
+        cancelar = root.findViewById(R.id.btCancelarRuta);
         rutas = root.findViewById(R.id.btRutas);
 
         distancia = root.findViewById(R.id.tvDistanciaActual);
@@ -126,7 +130,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         autolocalizador = root.findViewById(R.id.btDesactivarLocalizador);
         tiempo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_access_time_black_24dp, 0, 0, 0);
 
-        layout = root.findViewById(R.id.layoutRuta);
+        layoutRuta = root.findViewById(R.id.layoutRuta);
 
         autolocalizador.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +152,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         getFragmentManager().beginTransaction().replace(R.id.mapContainer, supportMapFragment).commit();
         supportMapFragment.getMapAsync(this);
         actualizar = true;
-        layout.setVisibility(View.INVISIBLE);
+        layoutRuta.setVisibility(View.INVISIBLE);
 
 
         fabRuta.setOnClickListener(new View.OnClickListener() {
@@ -159,17 +163,32 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     grabar = false;
                     fabRuta.setImageResource(android.R.drawable.ic_media_play);
                     autolocalizador.setVisibility(View.VISIBLE);
-                    layout.setVisibility(View.INVISIBLE);
+                    layoutRuta.setVisibility(View.INVISIBLE);
                     alertDialog();
                     mMap.clear();
+
+
+                    //Marcador de inicio
+                    inicio = mMap.addMarker(new MarkerOptions()
+                            // Posición
+                            .position(posActual)
+                            // Título
+                            .title("Inicio")
+                            // Subtitulo
+                            .snippet("Inicio Ruta")
+                            // Color o tipo d icono
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    );
+
                 }else{
                     grabar = true;
                     fabRuta.setImageResource(R.drawable.ic_clear_black_24dp);
                     autolocalizador.setVisibility(View.INVISIBLE);
                     actualizar = true;
                     dist = 0;
-                    layout.setVisibility(View.VISIBLE);
+                    layoutRuta.setVisibility(View.VISIBLE);
                     ruta = new ArrayList<>();
+                    distancia.setText(String.format(getString(R.string.kmmarker), dist));
 
                 }
             }
@@ -180,13 +199,30 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         rutas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RutasFragment rutasFragment = new RutasFragment();
+                RutasFragment rutasFragment = new RutasFragment(getFragment());
                 getFragmentManager().beginTransaction().add(R.id.nav_host_fragment,rutasFragment).addToBackStack(null).commit();
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+                layoutRuta.setVisibility(View.INVISIBLE);
+                mMap.clear();
+                fabRuta.setVisibility(View.VISIBLE);
+                rutas.setVisibility(View.VISIBLE);
+                autolocalizador.setVisibility(View.VISIBLE);
+                cancelar.setVisibility(View.INVISIBLE);
             }
         });
 
 
         return root;
+    }
+
+    public MapasFragment getFragment(){
+        return this;
     }
 
     private void alertDialog() {
@@ -323,7 +359,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         // Añadmimos marcadores
         agregarMarcadores();
 
-        // activa el evento de marcadores Touc
+        // activa el evento de marcadores Touch
         activarEventosMarcdores();
 
         // Obtenemos la posición GPS
@@ -430,6 +466,58 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     }
 
 
+    @SuppressLint("RestrictedApi")
+    public void cargarRuta(ArrayList<LatLng> puntos){
+        actualizar = false;
+        mMap.addMarker(new MarkerOptions()
+                // Posición
+                .position(puntos.get(puntos.size()-1))
+                // Título
+                .title("Inicio")
+                // Subtitulo
+                .snippet("Inicio Ruta")
+                // Color o tipo d icono
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+        );
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(puntos.get(0)));
+
+        mMap.addMarker(new MarkerOptions()
+                // Posición
+                .position(puntos.get(0))
+                // Título
+                .title("Fin")
+                // Subtitulo
+                .snippet("Fin Ruta")
+                // Color o tipo d icono
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+        );
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(puntos.get(puntos.size()-1)));
+        PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+        for (int z = 0; z < puntos.size(); z++) {
+            LatLng point = puntos.get(z);
+            options.add(point);
+        }
+        line = mMap.addPolyline(options);
+        layoutRuta.setVisibility(View.VISIBLE);
+
+        rutas.setVisibility(View.INVISIBLE);
+        fabRuta.setVisibility(View.INVISIBLE);
+        autolocalizador.setVisibility(View.INVISIBLE);
+        cancelar.setVisibility(View.VISIBLE);
+        dist = 0;
+        for (int i = 1; i < puntos.size();i++){
+            dist += distance(puntos.get(i-1).latitude, puntos.get(i-1).longitude,puntos.get(i).latitude,puntos.get(i).longitude);
+
+        }
+
+        distancia.setText(String.format(getString(R.string.kmmarker), dist));
+
+
+
+
+
+    }
+
     // solicitamos los permisos para leer de algo
     // Esto debemos hacerlo con todo
 
@@ -495,7 +583,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                         // Título
                         .title("Marcador Touch")
                         // Subtitulo
-                        .snippet("El Que tú has puesto")
+                        .snippet("Tu marcador")
                         // Color o tipo d icono
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
                 );
