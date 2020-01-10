@@ -108,6 +108,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     private LinearLayout layoutRuta;
     private Button rutas;
     private Button cancelar;
+    private Timer timer;
 
 
     private Handler handler;
@@ -167,7 +168,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     layoutRuta.setVisibility(View.INVISIBLE);
                     alertDialog();
                     mMap.clear();
-
+                    rutas.setVisibility(View.VISIBLE);
 
                     //Marcador de inicio
                     inicio = mMap.addMarker(new MarkerOptions()
@@ -190,7 +191,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     layoutRuta.setVisibility(View.VISIBLE);
                     ruta = new ArrayList<>();
                     distancia.setText(String.format(getString(R.string.kmmarker), dist));
-
+                    rutas.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -306,6 +307,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
 
         handler.removeCallbacks(null);
         handler = new Handler();
+        timer.cancel();
         super.onDestroy();
     }
 
@@ -480,7 +482,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     // Aqui lo llevas
     private void autoActualizador() {
 
-        Timer timer = new Timer();
+        timer = new Timer();
         TimerTask doAsyncTask = new TimerTask() {
             @Override
             public void run() {
