@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_juegos, R.id.nav_music, R.id.nav_send, R.id.nav_sensor, R.id.nav_share, R.id.nav_videos)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_juegos, R.id.nav_music, R.id.nav_send, R.id.nav_sensor, R.id.nav_share, R.id.nav_videos,R.id.nav_map)
                 .setDrawerLayout(drawer)
                 .build();
         //GRUPO MYCLASS
@@ -214,7 +214,9 @@ public class MainActivity extends AppCompatActivity {
         Dexter.withActivity(this)
                 .withPermissions(
                         android.Manifest.permission.CAMERA,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
