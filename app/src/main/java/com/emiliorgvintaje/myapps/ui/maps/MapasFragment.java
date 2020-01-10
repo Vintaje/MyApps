@@ -38,6 +38,7 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -541,7 +542,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         }
 
         // Mapa híbrido, lo normal es usar el
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         // Que se vea la interfaz y la brújula por ejemplo
         // También podemos quitar gestos
         UiSettings uiSettings = mMap.getUiSettings();
@@ -561,6 +562,15 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         mMap.setMinZoomPreference(15.0f);
         // Señalamos el tráfico
         mMap.setTrafficEnabled(true);
+
+        boolean success = mMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        getContext(), R.raw.mapthem));
+
+        if(success){
+            Toast.makeText(getContext(), "Mapa cargado correctamente",Toast.LENGTH_SHORT).show();
+
+        }
     }
 
 
