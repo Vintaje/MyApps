@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     //GPX
     implementation 'io.ticofab.androidgpxparser:parser:1.6.0'
+    implementation 'commons-io:commons-io:2.6'
 }
