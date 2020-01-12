@@ -11,14 +11,10 @@ import java.io.File;
 
 public class MyFiles {
     public static void borrarFichero(String path) {
-        // Borramos la foto de alta calidad
+
         File fdelete = new File(path);
         if (fdelete.exists()) {
-            if (fdelete.delete()) {
-                Log.d("FOTO", "Foto borrada::--->" + path);
-            } else {
-                Log.d("FOTO", "Foto NO borrada::--->" + path);
-            }
+            fdelete.delete();
         }
     }
 

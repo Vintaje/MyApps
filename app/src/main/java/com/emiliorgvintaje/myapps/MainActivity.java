@@ -216,7 +216,8 @@ public class MainActivity extends AppCompatActivity {
                         android.Manifest.permission.CAMERA,
                         android.Manifest.permission.READ_EXTERNAL_STORAGE,
                         android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {

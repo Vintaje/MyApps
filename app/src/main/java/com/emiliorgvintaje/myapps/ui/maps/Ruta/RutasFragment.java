@@ -63,12 +63,7 @@ public class RutasFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new CustomTouchListener(root.getContext(), new onItemClickListener() {
             @Override
             public void onClick(View view, int index) {
-                final File ruta = rutas.get(index);
-                ArrayList<LatLng> puntos = new ArrayList<>();
-                puntos = GPXUtil.read(root.getContext(), ruta);
 
-                mapasFragment.cargarRuta(puntos);
-                ((MainActivity)getActivity()).onBackPressed();
             }
         }));
 
@@ -83,13 +78,23 @@ public class RutasFragment extends Fragment {
         return root;
     }
 
+    public RutasFragment returnFragment(){
+       return this;
 
+    }
+
+
+
+    public void load(){
+        new routeLoader().execute();
+
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        new routeLoader().execute();
+        load();
 
     }
     private void runLayoutAnimation(final RecyclerView recyclerView) {
@@ -112,7 +117,7 @@ public class RutasFragment extends Fragment {
                 rutas = new ArrayList<>(Arrays.asList(GPXUtil.readlist()));
             }catch(NullPointerException ex){
                 rutas = new ArrayList<>();
-
+                ex.printStackTrace();
             }
             return null;
         }
@@ -121,12 +126,13 @@ public class RutasFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            adapter = new RutaAdapter(rutas);
+            adapter = new RutaAdapter(rutas, returnFragment(),mapasFragment);
+
             recyclerView.setAdapter(adapter);
 
             runLayoutAnimation(recyclerView);
             recyclerView.setHasFixedSize(true);
-
+            adapter.notifyDataSetChanged();
         }
     }
 

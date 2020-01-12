@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.apache.commons.io.FilenameUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,6 +33,14 @@ import javax.xml.transform.stream.StreamResult;
 public class GPXUtil {
     public final static String path = "/myapps/gpx";
 
+
+    /**
+     * Construccion del XML en GPX, usaremos DocumentBuilderFactory y DOM para crear el XML
+     *
+     * @param locations puntos de la ruta
+     * @param context   Contexto de la APP
+     * @param nombre    nombre del fichero
+     */
     public static void build(ArrayList<LatLng> locations, Context context, String nombre) {
         File dirGPX = new File(Environment.getExternalStorageDirectory() + path);
         // Si no existe el directorio, lo creamos solo si es publico
@@ -39,7 +48,7 @@ public class GPXUtil {
             dirGPX.mkdirs();
         }
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-        File file = new File(Environment.getExternalStorageDirectory() + path, System.currentTimeMillis()+".xml");
+        File file = new File(Environment.getExternalStorageDirectory() + path, System.currentTimeMillis() + ".xml");
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -64,10 +73,6 @@ public class GPXUtil {
         root.setAttribute("version", "1.1");
         root.setAttribute("xsi:schemaLocation", "http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd");
         document.appendChild(root);
-        Element nbr = document.createElement("number");
-        nbr.setAttribute("numpoints", Integer.toString(locations.size()));
-        nbr.setAttribute("numwpts", "0");
-        root.appendChild(nbr);
 
         Element track = document.createElement("trk");
         root.appendChild(track);
@@ -78,7 +83,6 @@ public class GPXUtil {
             Element trkpt = document.createElement("trkpt");
             trkpt.setAttribute("lat", Double.toString(loc.latitude));
             trkpt.setAttribute("lon", Double.toString(loc.longitude));
-            trkpt.setAttribute("grade", Integer.toString(1));
             trackseg.appendChild(trkpt);
         }
 
@@ -136,7 +140,7 @@ public class GPXUtil {
             Node nodo = localizaciones.item(i);
             double lat = Double.parseDouble(nodo.getAttributes().getNamedItem("lat").getNodeValue());
             double lon = Double.parseDouble(nodo.getAttributes().getNamedItem("lon").getNodeValue());
-            LatLng loc = new LatLng(lat,lon);
+            LatLng loc = new LatLng(lat, lon);
 
 
             tkpoints.add(loc);
@@ -164,19 +168,45 @@ public class GPXUtil {
         } catch (SAXException e) {
             e.printStackTrace();
         }
-        String res =  document.getElementsByTagName("gpx").item(0).getAttributes().getNamedItem("ruta").getNodeValue();
+        String res = "";
+        try {
+            res = document.getElementsByTagName("gpx").item(0).getAttributes().getNamedItem("ruta").getNodeValue();
+        }catch(Exception ignored){}
         System.out.printf(res);
-        return  res;
+        return res;
 
+    }
+
+
+    public static boolean comprobarGPX(File file) {
+        if (FilenameUtils.getExtension(file.getAbsolutePath()).equals("xml")) {
+            try {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = null;
+                builder = factory.newDocumentBuilder();
+                Document document = null;
+                document = builder.parse(file);
+                String res = document.getElementsByTagName("gpx").item(0).getAttributes().getNamedItem("ruta").getNodeValue();
+                System.out.printf(res);
+                if (!res.isEmpty()) return true;
+            } catch (Exception ignored) {}
+        } else return false;
+        return false;
     }
 
 
     public static File[] readlist() {
         File dir = new File(Environment.getExternalStorageDirectory() + path);
         File[] files = dir.listFiles();
-
-
-        return files;
+        ArrayList<File> gpx = new ArrayList<>();
+        try {
+            for (File f : files) {
+                if (comprobarGPX(f)) gpx.add(f);
+            }
+        } catch (Exception ignored) {
+        }
+        File[] arr = new File[gpx.size()];
+        return gpx.toArray(arr);
     }
 
 

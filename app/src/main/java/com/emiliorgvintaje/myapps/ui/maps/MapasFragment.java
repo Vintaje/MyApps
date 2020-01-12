@@ -108,7 +108,6 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     private LinearLayout layoutRuta;
     private Button rutas;
     private Button cancelar;
-    private Timer timer;
 
 
     private Handler handler;
@@ -160,7 +159,6 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         fabRuta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(grabar){
                     grabar = false;
                     fabRuta.setImageResource(android.R.drawable.ic_media_play);
@@ -168,8 +166,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     layoutRuta.setVisibility(View.INVISIBLE);
                     alertDialog();
                     mMap.clear();
-                    rutas.setVisibility(View.VISIBLE);
-
+                    obtenerPosicion();
                     //Marcador de inicio
                     inicio = mMap.addMarker(new MarkerOptions()
                             // Posición
@@ -181,17 +178,17 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                             // Color o tipo d icono
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                     );
+                    mMap.setMyLocationEnabled(true);
 
                 }else{
                     grabar = true;
                     fabRuta.setImageResource(R.drawable.ic_clear_black_24dp);
                     autolocalizador.setVisibility(View.INVISIBLE);
-                    actualizar = true;
                     dist = 0;
                     layoutRuta.setVisibility(View.VISIBLE);
                     ruta = new ArrayList<>();
                     distancia.setText(String.format(getString(R.string.kmmarker), dist));
-                    rutas.setVisibility(View.INVISIBLE);
+
                 }
             }
 
@@ -202,7 +199,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
             @Override
             public void onClick(View v) {
                 RutasFragment rutasFragment = new RutasFragment(getFragment());
-                getFragmentManager().beginTransaction().add(R.id.nav_host_fragment,rutasFragment).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().add(R.id.nav_host_fragment,rutasFragment)
+                        .setCustomAnimations(R.anim.fragment_effect, R.anim.fragment_effect_exit).addToBackStack(null).commit();
             }
         });
 
@@ -216,6 +214,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                 rutas.setVisibility(View.VISIBLE);
                 autolocalizador.setVisibility(View.VISIBLE);
                 cancelar.setVisibility(View.INVISIBLE);
+                actualizar = true;
             }
         });
 
@@ -237,26 +236,17 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         input.setPadding(40,0,40,0);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         dialog.setView(input);
-
-        dialog.setPositiveButton("Confirmar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
+        dialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
                         String path = input.getText().toString().trim();
-
-                        if(path.isEmpty()){
-
-                            Toast.makeText(getContext(),"Nombre Incorrecto", Toast.LENGTH_SHORT).show();
-                        }else {
-                            GPXUtil.build(ruta,root.getContext(),path);
-                        }
+                        if(path.isEmpty()) Toast.makeText(getContext(),"Nombre Incorrecto", Toast.LENGTH_SHORT).show();
+                        else GPXUtil.build(ruta,root.getContext(),path);
                     }
                 });
-
         dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getContext(),"Reproduccion Cancelada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Guardado Cancelado", Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog alertDialog = dialog.create();
@@ -264,14 +254,9 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     }
 
 
-
-
     private void printTime() {
         //Imprimir en TextView la hora y fecha actual
         final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-
-
-
         Timer timer = new Timer();
         TimerTask doAsyncTask = new TimerTask() {
             @Override
@@ -307,7 +292,6 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
 
         handler.removeCallbacks(null);
         handler = new Handler();
-        timer.cancel();
         super.onDestroy();
     }
 
@@ -336,6 +320,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     @Override
     public void onLocationChanged(Location location) {
 
+
+        //new LatLng(, ));
     }
 
     @Override
@@ -350,19 +336,28 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
             @Override
             public void onMyLocationChange(Location location) {
                 posActual = new LatLng(location.getLatitude(), location.getLongitude());
+                if(actualizar){
+                    situarCamaraMapa();
+
+                }
             }
         });
         mMap.setMyLocationEnabled(true);
-
+        // Configurar IU Mapa
         configurarIUMapa();
 
+        // Obtenemos la posición GPS
+        // Esto lo hago para informar de la última posición
+        // Obteniendo coordenadas GPS directamente
         obtenerPosicion();
+        // Situar la camara inicialmente a una posición determinada
 
+        // Acrtualizar cada X Tiempo, implica programar eventos o hacerlo con un hilo
+        // Esto consume, por lo que ideal es activarlo y desactivarlo
+        // cuando sea necesario
         autoActualizador();
 
-
         // Para usar eventos
-        // Yo lo haría con obtenerposición, pues hacemos lo mismo
         mGoogleApiClient = new GoogleApiClient.Builder(root.getContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -382,16 +377,16 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
     private void obtenerPosicion() {
         try {
             if (permisos) {
-
                 // Lo lanzamos como tarea concurrente
                 Task<Location> local = mPosicion.getLastLocation();
+
                 local.addOnCompleteListener(getActivity(), new OnCompleteListener<Location>() {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
-
+                            posActual = new LatLng(task.getResult().getLatitude(),
+                                    task.getResult().getLongitude());
                             situarCamaraMapa();
-
                         } else {
                             Log.d("GPS", "No se encuetra la última posición.");
                             Log.e("GPS", "Exception: %s", task.getException());
@@ -404,7 +399,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
         }
     }
 
-
+    //Calculamos la distancia entre dos puntos
     private double distance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
         double dist = Math.sin(deg2rad(lat1))
@@ -453,7 +448,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
         );
         mMap.moveCamera(CameraUpdateFactory.newLatLng(puntos.get(puntos.size()-1)));
-        PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+        PolylineOptions options = new PolylineOptions().width(5).color(Color.CYAN).geodesic(true);
         for (int z = 0; z < puntos.size(); z++) {
             LatLng point = puntos.get(z);
             options.add(point);
@@ -470,19 +465,12 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
             dist += distance(puntos.get(i-1).latitude, puntos.get(i-1).longitude,puntos.get(i).latitude,puntos.get(i).longitude);
 
         }
-
         distancia.setText(String.format(getString(R.string.kmmarker), dist));
     }
 
-    // solicitamos los permisos para leer de algo
-    // Esto debemos hacerlo con todo
-
     // Hilo con un reloj interno
-    // Te acuerdas de los problemas de PSP con un Thread.Sleep()
-    // Aqui lo llevas
     private void autoActualizador() {
-
-        timer = new Timer();
+        Timer timer = new Timer();
         TimerTask doAsyncTask = new TimerTask() {
             @Override
             public void run() {
@@ -491,7 +479,6 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                     public void run() {
                         if(actualizar) {
                             try {
-
                                 // Obtenemos la posición
                                 obtenerPosicion();
                                 situarCamaraMapa();
@@ -501,7 +488,9 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
                                         dist += distance(ruta.get(ruta.size()-2).latitude,ruta.get(ruta.size()-2).longitude,ruta.get(ruta.size()-1).latitude,ruta.get(ruta.size()-1).longitude);
                                         distancia.setText(String.format(getString(R.string.kmmarker), dist));
                                     }
-                                    PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+
+                                    //Pintamos la ruta
+                                    PolylineOptions options = new PolylineOptions().width(10).color(Color.CYAN).geodesic(true);
                                     for (int z = 0; z < ruta.size(); z++) {
                                         LatLng point = ruta.get(z);
                                         options.add(point);
@@ -519,27 +508,19 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
 
         };
         // Actualizamos cada 1 segundo
-        // podemos pararlo con timer.cancel();
         timer.schedule(doAsyncTask, 0, 1000);
     }
 
-
     private void situarCamaraMapa() {
-        // Puedo moverla a una posición que queramos
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(posDefecto));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(posActual));
     }
 
     private void configurarIUMapa() {
-        // Puedo activar eventos para un solo marcador o varios
-        // Con la interfaz  OnMarkerClickListener
+
         mMap.setOnMarkerClickListener(this);
 
         // Activar Boton de Posición actual
         if (permisos) {
-            // Si tenemos permisos pintamos el botón de la localización actual
-            // Esta posición la obtiene google automaticamente y no tiene que ver con
-            // obtener posición
             mMap.setMyLocationEnabled(true);
         }
 
@@ -574,6 +555,8 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback, Googl
 
         }
     }
+
+
 
 
 
