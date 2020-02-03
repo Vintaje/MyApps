@@ -8,16 +8,16 @@ Proyecto que incluye multiples soluciones como CRUD, Multimedia, tratamiento de 
 
 ## Tabla de Contenido
 
-### 1. Dependencias
-### 2. Lector RSS (eurogamer.es)
+# 1. Dependencias
+## 2. Lector RSS (eurogamer.es)
 ### 3. CRUD Agenda de Juegos
-### 4. Reproductor de Musica
-### 5. Reproductor de Video
-### 6. Test de Sensores
+#### 4. Reproductor de Musica
+##### 5. Reproductor de Video
+###### 6. Test de Sensores
 
 
 
-## 1. Dependencias
+# 1. Dependencias
 
 ```
     implementation 'com.google.code.gson:gson:2.3.1'
@@ -37,7 +37,7 @@ RSS Source - https://eurogamer.es
 ```
 
 
-## 3. CRUD Agenda Juegos
+### 3. CRUD Agenda Juegos
 
 Creacion de una agenda en la cual almacenamos informacion e imagenes en b64 dentro de una BBDD
 ```
@@ -45,7 +45,7 @@ BBDD - SQLite
 ```
 
 
-## 4. Reproductor de Musica
+#### 4. Reproductor de Musica
 
 Reproductor de Audios encontrados en el propio dispositivo, para reproducir se usa un servicio creado el cual lee un fichero XML creada por la APP donde se guarda una lista de reproduccion y el index de la cancion actual
 
@@ -58,7 +58,7 @@ Estructura del XML
 </map>
 ```
 
-## 5. Reproductor de Video
+##### 5. Reproductor de Video
 
 Reproductor sencillo el cual recoge y reproduce en un VideoView dentro de un Fragment, videos encontrados en el dispositivos
 ```
@@ -66,7 +66,7 @@ Tambien, gracias a la dependencia de Pier Francesco, reproducimos videos de Yout
 ```
 
 
-## 6. Test de Sensores
+###### 6. Test de Sensores
 
 Fragment con varias animaciones personales para comprobar los valores de los sensores, estas son por ejemplo, una vista de avion, mover un objeto con el acelerometro, brujula para orientacion o un grafico para comprobar el Flujo Magnetico
 
